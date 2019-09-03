@@ -132,9 +132,10 @@
                             <shadedClassifierName>shaded</shadedClassifierName> <!-- Any name that makes sense -->
                             <relocations>
                                 <relocation>
-                                    <shadedPattern>guavus.com</shadedPattern>
+                                    <shadedPattern>guavus.</shadedPattern>
                                     <excludes>
                                         <exclude>com.hortonworks.**</exclude>
+                                        <exclude>org.apache.kafka.**</exclude>
                                     </excludes>
                                 </relocation>
                             </relocations>

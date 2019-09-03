@@ -107,16 +107,43 @@
     </dependencies>
 
     <build>
-      <resources>
-        <resource>
-          <directory>../../</directory>
-          <targetPath>META-INF</targetPath>
-          <includes>
-            <include>LICENSE.txt</include>
-            <include>NOTICE.txt</include>
-          </includes>
-        </resource>
-      </resources>
+        <resources>
+            <resource>
+                <directory>../../</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>LICENSE.txt</include>
+                    <include>NOTICE.txt</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedClassifierName>shaded</shadedClassifierName> <!-- Any name that makes sense -->
+                            <relocations>
+                                <relocation>
+                                    <shadedPattern>guavus.com</shadedPattern>
+                                    <excludes>
+                                        <exclude>com.hortonworks.**</exclude>
+                                    </excludes>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
